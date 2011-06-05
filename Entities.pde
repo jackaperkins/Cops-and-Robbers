@@ -19,29 +19,29 @@ class Entities {
     ROBBER_WALK_SPEED = 0.5;
     ROBBER_RUN_SPEED = 1.7;
 
-    
+
     int maxy;
-    
+
     maxy = 4+(int)random(2);
-   for(int i=0;i<maxy; i++ ){
-     float angle = (i/float(maxy))*TWO_PI+random(1/(maxy*2.0))-1/maxy*4.0;
-     float len = 100+random(200);
-     treasures.add(new Treasure(len*cos(angle),len*sin(angle)));
-   }
-   
-       maxy = 9+(int)random(6);
-   for(int i=0;i<maxy; i++ ){
-     float angle = (i/float(maxy))*TWO_PI+random(1/(maxy*2.0))-1/maxy*4.0;
-     float len = 100+random(200);
-     cops.add(new Cop(len*cos(angle),len*sin(angle)));
-   }
-   
-       maxy = 16+(int) random(7);
-   for(int i=0;i<maxy; i++ ){
-     float angle = (i/float(maxy))*TWO_PI+random(1/(maxy*2.0))-1/maxy*4.0;
-     float len = 400+random(300);
-     robbers.add(new Robber(len*cos(angle),len*sin(angle)));
-   }
+    for(int i=0;i<maxy; i++ ) {
+      float angle = (i/float(maxy))*TWO_PI+random(1/(maxy*2.0))-1/maxy*4.0;
+      float len = 100+random(200);
+      treasures.add(new Treasure(len*cos(angle),len*sin(angle)));
+    }
+
+    maxy = 9+(int)random(6);
+    for(int i=0;i<maxy; i++ ) {
+      float angle = (i/float(maxy))*TWO_PI+random(1/(maxy*2.0))-1/maxy*4.0;
+      float len = 100+random(200);
+      cops.add(new Cop(len*cos(angle),len*sin(angle)));
+    }
+
+    maxy = 16+(int) random(7);
+    for(int i=0;i<maxy; i++ ) {
+      float angle = (i/float(maxy))*TWO_PI+random(1/(maxy*2.0))-1/maxy*4.0;
+      float len = 400+random(300);
+      robbers.add(new Robber(len*cos(angle),len*sin(angle)));
+    }
   } 
 
   Robber closestRobber(Mover test) { 
@@ -81,10 +81,11 @@ class Entities {
     for(int i=0;i<cops.size();i++) {
       Cop guy = (Cop) cops.get(i); 
       if(i==0) {
-        if(guy != test){
-        which = guy;
-        } else {
-         which =   (Cop) cops.get(1);
+        if(guy != test) {
+          which = guy;
+        } 
+        else {
+          which =   (Cop) cops.get(1);
         }
       } 
       else {
@@ -115,34 +116,33 @@ class Entities {
 
 
   void go() {
-    
-        for(int i=0;i<treasures.size();i++) {
+
+    for(int i=0;i<treasures.size();i++) {
       Treasure frank = (Treasure) treasures.get(i);
-      if(frank.remove){
-       treasures.remove(i); 
-       if(treasures.size()==0){
-        mousePressed(); 
-       }
+      if(frank.remove) {
+        treasures.remove(i); 
+        if(treasures.size()==0) {
+          mousePressed();
+        }
       }
-     }
+    }
     for(int i=0;i<robbers.size();i++) {
       Robber frank = (Robber) robbers.get(i);
       frank.go();
-      
     }
-    
-     for(int i=0;i<robbers.size();i++) {
+
+    for(int i=0;i<robbers.size();i++) {
       Robber frank = (Robber) robbers.get(i);
-      if(frank.remove){
-       robbers.remove(i); 
-       if(robbers.size()==0){
-        mousePressed(); 
-       }
+      if(frank.remove) {
+        robbers.remove(i); 
+        if(robbers.size()==0) {
+          mousePressed();
+        }
       }
-     }
+    }
 
 
- 
+
 
     for(int i=0;i<cops.size();i++) {
       Cop frank = (Cop) cops.get(i);
@@ -152,7 +152,7 @@ class Entities {
 
 
   void display() {
-    
+
     for(int i=0;i<treasures.size();i++) {
       Treasure frank = (Treasure) treasures.get(i);
       frank.display();
@@ -166,10 +166,6 @@ class Entities {
       Cop frank = (Cop) cops.get(i);
       frank.display();
     }
-
-
   }
-  
-  
 }
 

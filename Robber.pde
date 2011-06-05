@@ -21,6 +21,7 @@ class Robber extends Mover {
   }
 
   void display() {
+    noStroke();
     fill(col,200,255);
     //rect(x-fat/2,y-fat/2,fat,fat); 
     pushMatrix();
@@ -97,13 +98,7 @@ class Robber extends Mover {
           state="sneaking";
         }
       }
-
-
       move(entities.ROBBER_RUN_SPEED);
-
-
-
-      // state="stealing";
     }
     else if (state=="stealing") {
       angle += difference(entities.closestTreasure(this))*0.21;
